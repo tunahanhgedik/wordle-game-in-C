@@ -179,11 +179,11 @@ int main()
        {
        	    printf("Kaybettiniz! 10 hakkinizi da kullandiniz.\n");
     		printf("Gizli kelime: %s\n\n", secret_word);
-			printf("Tekrar oynamak ister misiniz? (y/n): ");
-       		scanf(" %c", &play_again);
-        	printf("\n");
 	   }
-}
+	   printf("Tekrar oynamak ister misiniz? (y/n): ");
+       scanf(" %c", &play_again);
+   	   printf("\n");
+   }
 	while (play_again == 'y' || play_again == 'Y');
     printf("Oynadiginiz icin tesekkurler.");
  
