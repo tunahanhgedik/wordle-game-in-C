@@ -19,7 +19,7 @@ void random_word_maker(char *word)
  
     if (dosya == NULL) 
 	{
-        printf("Hata: word.txt dosyasi bulunamadi!\n");
+        printf("Error: word.txt file cannot be found.\n");
     }
  
     while (fscanf(dosya, "%19s", temp) == 1)
@@ -44,8 +44,8 @@ void random_word_maker(char *word)
 void letter_to_board(int *board) 
 {
     int i;
-    printf("--- Harf Tahtasi ---\n");
-    printf("Kalan harfler : ");
+    printf("--- Letter Table ---\n");
+    printf("Remaining Letters : ");
     for (i = 0; i < 26; i++) 
 	{
         if (board[i] >= 1)
@@ -111,14 +111,14 @@ int valid_guess(char *guess)
     int i;
     if ((int)strlen(guess) != 5) 
 	{
-        printf("Hata: Tam olarak 5 harf girmelisiniz!\n");
+        printf("Error: You must enter exactly 5 letters!\n");
         return 0;
     }
     for (i = 0; i < 5; i++) 
 	{
         if (!isalpha((unsigned char)guess[i])) 
 		{
-            printf("Hata: Sadece harf girebilirsiniz!\n");
+            printf("Error: You can only enter letters!\n");
             return 0;
         }
     }
@@ -149,7 +149,7 @@ int main()
         for (attempt = 1; attempt <= 10; attempt++) 
 		{
             letter_to_board(board);
-            printf("Deneme %2d: ", attempt);
+            printf("Attempt %2d: ", attempt);
  
             do 
 			{
@@ -161,7 +161,7 @@ int main()
  
             check_guess(guess, secret_word, feedback, board);
  
-            printf("Sonuc    : ");
+            printf("Result    : ");
             for (i = 0; i < 5; i++)
                 printf("%c ", feedback[i]);
             printf("\n\n");
@@ -169,7 +169,7 @@ int main()
             if (strcmp(feedback, "+++++") == 0) 
 			{
                 won = 1;
-                printf("Tebrikler! Kelimeyi buldunuz. \n\n",
+                printf("Congratulations! You found the word. \n\n",
                        attempt, secret_word);
                 break;
             }
@@ -177,15 +177,15 @@ int main()
  
        if (!won)
        {
-       	    printf("Kaybettiniz! 10 hakkinizi da kullandiniz.\n");
-    		printf("Gizli kelime: %s\n\n", secret_word);
+       	    printf("You lost! You have used all your attempts.\n");
+    		printf("Secret word: %s\n\n", secret_word);
 	   }
-	   printf("Tekrar oynamak ister misiniz? (y/n): ");
+	   printf("Do you want to play again? (y/n): ");
        scanf(" %c", &play_again);
    	   printf("\n");
    }
 	while (play_again == 'y' || play_again == 'Y');
-    printf("Oynadiginiz icin tesekkurler.");
+    printf("Thanks for playing.");
  
     return 0;
 }
